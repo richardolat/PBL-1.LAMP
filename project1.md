@@ -49,10 +49,39 @@ PHP is the component of our setup that will process code to display dynamic cont
 #### Once the installation is finished, we will run the following command to confirm our PHP version:
 `php -v`
 
+![image](https://github.com/richardolat/PBL-1.LAMP/assets/134428528/6f2d0e4c-f131-4dd4-84f3-05820b5e711d)
 
 
 ### CREATING A VIRTUAL HOST FOR YOUR WEBSITE USING APACHE
 
+In this project, we will set up a domain called QBee
+
+#### 1-We will create the directory for QBee using ‘mkdir’ command as follows:
+`sudo mkdir /var/www/projectlamp`
+
+#### 2-We will assign ownership of the directory with our bcurrent system user:
+`sudo chown -R $USER:$USER /var/www/QBee`
+
+#### 3-We will create and open a new configuration file in Apache’s sites-available directory using our preferred command-line editor. Here, we’ll be using vi or vim 
+`sudo vi /etc/apache2/sites-available/QBee.conf`
+
+#### 4-We will now use a2ensite command to enable the new virtual host:
+`sudo a2ensite QBee`
+
+![image](https://github.com/richardolat/PBL-1.LAMP/assets/134428528/263ac435-84d7-4dd5-9106-ae93084f3e1c)
 
 
+#### 5-Finally,We reload Apache so these changes take effect:
+`sudo systemctl reload apache2`
+
+### ENABLE PHP ON THE WEBSITE
+
+#### 1-We will create a new file named index.php inside our custom web root folder:
+`vim /var/www/projectlamp/index.php`
+
+#### 2-This will open a blank file. We will add the following text, which is valid PHP code, inside the file:
+`<?php
+phpinfo();`
+
+#### 3-When we are finished, we will  save and close the file and refresh the page. 
 
