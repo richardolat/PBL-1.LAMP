@@ -12,12 +12,29 @@ Apache HTTP Server is the most widely used web server software. Developed and ma
 
 We need to Install Apache using Ubuntu’s package manager ‘apt’:
 
-#### 1-update a list of packages in package manager
+#### 1-We will update a list of packages in package manager
 `sudo apt update`
 
-#### 2-run apache2 package installation
+#### 2-We will run apache2 package installation
 `sudo apt install apache2`
 
-
-To verify that our apache2 is running as a Service in our OS, we will run the following command;
+#### 3-To verify that apache2 is running as a Service in our OS,we will run the following command
 `sudo systemctl status apache2`
+
+![image](https://github.com/richardolat/PBL-1.LAMP/assets/134428528/fd58fa29-d25b-42ef-8cdf-1bb57f1a819d)
+
+### INSTALLING MYSQL
+
+MySQL is a popular relational database management system used within PHP environments, so we will use it in our project.
+
+#### 1-We will use ‘apt’ to acquire and install mysql:
+`sudo apt install mysql-server`
+
+#### 2-When the installation is finished, we will log in to the MySQL console by typing:
+`sudo mysql`
+
+#### 3-We will Start the interactive script by running:
+`sudo mysql_secure_installation`
+
+
+
