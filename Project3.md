@@ -140,8 +140,14 @@ module.exports = router;`
 #### We will change directory back Todo folder with cd .. and install Mongoose
 `npm install mongoose`
 
+![image](https://github.com/richardolat/PBL-1.LAMP/assets/134428528/6e55e2c5-b35d-442d-afb6-89386080da09)
+
+
 #### We will create a new folder models :
 `mkdir models`
+
+![image](https://github.com/richardolat/PBL-1.LAMP/assets/134428528/38c3a302-2f17-449d-b597-12f84273ed2a)
+
 
 #### Inside the models folder,we will create a file and name it todo.js
 `sudo vim todo.js`
@@ -199,12 +205,202 @@ Todo.findOneAndDelete({"_id": req.params.id})
 module.exports = router;`
 
 
-![image](https://github.com/richardolat/PBL-1.LAMP/assets/134428528/aa567b1d-9a5f-4e0f-9097-0cc484b9d976)
-
-
 ### MONGODB DATABASE
 
-#### We need a database where we will store our data. For this we will make use of mLab. mLab provides MongoDB database as a service solution (DBaaS), so to make life easy, you will need to sign up for a shared clusters free account, which is ideal for our use case. Sign up here. Follow the sign up process, select AWS as the cloud provider, and choose a region near you.
+#### We need a database where we will store our data. For this we will make use of mLab. mLab provides MongoDB database as a service solution (DBaaS), so to make life easy, you will need to sign up for a shared clusters free account, which is ideal for our use case. 
+
+![image](https://github.com/richardolat/PBL-1.LAMP/assets/134428528/5a886e92-7e54-491a-bdaa-e01d684e4948)
+
+
+#### We will create a file in our Todo directory and name it .env.
+`touch .env`
+`vi .env`
+
+#### We will add the connection string to access the database in it, just as below:
+
+![image](https://github.com/richardolat/PBL-1.LAMP/assets/134428528/58cba98e-ebf9-413d-868f-360f86338edf)
+
+
+#### We will need to update the index.js to reflect the use of .env so that Node.js can connect to the database.
+#### We will Open the file with` vim index.js`
+
+#### The entire content in it will be deleted, then we will paste the entire code below in the file.
+
+`const express = require('express');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const routes = require('./routes/api');
+const path = require('path');
+require('dotenv').config();
+
+const app = express();
+
+const port = process.env.PORT || 5000;
+
+//connect to the database
+mongoose.connect(process.env.DB, { useNewUrlParser: true, useUnifiedTopology: true })
+.then(() => console.log(`Database connected successfully`))
+.catch(err => console.log(err));
+
+//since mongoose promise is depreciated, we overide it with node's promise
+mongoose.Promise = global.Promise;
+
+app.use((req, res, next) => {
+res.header("Access-Control-Allow-Origin", "\*");
+res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+next();
+});
+
+app.use(bodyParser.json());
+
+app.use('/api', routes);
+
+app.use((err, req, res, next) => {
+console.log(err);
+next();
+});
+
+app.listen(port, () => {
+console.log(`Server running on port ${port}`)
+});`
+
+#### We will start your server using the command:
+`node index.js`
+
+![image](https://github.com/richardolat/PBL-1.LAMP/assets/134428528/4ba4839b-3a3d-42e8-b8f0-fcec52f20579)
+
+## Testing Backend Code without Frontend using RESTful API
+
+#### In this project, we will use Postman to test our API.
+
+#### Now we will open our Postman and create a POST request to the API
+
+![image](https://github.com/richardolat/PBL-1.LAMP/assets/134428528/1ad719ce-b616-4ef7-9d6e-40498081dbfa)
+
+
+#### We will create a GET request to our API 
+
+![image](https://github.com/richardolat/PBL-1.LAMP/assets/134428528/1cccc669-6405-4ec7-aa59-73756eeaa8eb)
+
+## FRONTEND CREATION
+
+#### In the same root directory as our backend code, which is the Todo directory, we will run:
+
+![image](https://github.com/richardolat/PBL-1.LAMP/assets/134428528/4dbe632a-f101-4876-af71-6981daab353d)
+
+#### We will install concurrently. It is used to run more than one command simultaneously from the same terminal window.
+`npm install concurrently --save-dev`
+
+![image](https://github.com/richardolat/PBL-1.LAMP/assets/134428528/baa3a40a-66cd-4cae-9c88-54bc2a55658f)
+
+
+#### We will install nodemon. It is used to run and monitor the server. If there is any change in the server code, nodemon will restart it automatically and load the new changes.
+`npm install nodemon --save-dev`
+![image](https://github.com/richardolat/PBL-1.LAMP/assets/134428528/aec0bcc5-f02c-4e84-9ff3-46d664715991)
+
+#### In Todo folder, we will open the package.json file. We will Change the script part and replace with the code below."scripts": {
+`"start": "node index.js",
+"start-watch": "nodemon index.js",
+"dev": "concurrently \"npm run start-watch\" \"cd client && npm start\""
+},`
+
+#### We will Change directory to ‘client’
+
+#### We will open the package.json file
+
+#### We will add the key value pair in the package.json file "proxy": "http://localhost:5000".
+
+#### Now,we will  ensure we are inside the Todo directory, and simply do:
+`npm run dev`
+
+![image](https://github.com/richardolat/PBL-1.LAMP/assets/134428528/835e2360-b901-482e-972b-9fdec95dc93f)
+
+
+#### From our Todo directory run;
+`cd client`
+
+#### We will move to the src directory
+`cd src`
+
+#### Inside our src folder create another folder called components
+`mkdir components`
+
+#### We will move into the components directory with:
+`cd components`
+
+#### Inside ‘components’ directory we will  create three files Input.js, ListTodo.js and Todo.js.
+`touch Input.js ListTodo.js Todo.js`
+
+#### We will Open Input.js file
+`vi Input.js`
+
+#### Then we input the following:
+
+`import React, { Component } from 'react';
+import axios from 'axios';
+
+class Input extends Component {
+
+state = {
+action: ""
+}
+
+addTodo = () => {
+const task = {action: this.state.action}
+
+    if(task.action && task.action.length > 0){
+      axios.post('/api/todos', task)
+        .then(res => {
+          if(res.data){
+            this.props.getTodos();
+            this.setState({action: ""})
+          }
+        })
+        .catch(err => console.log(err))
+    }else {
+      console.log('input field required')
+    }
+
+}
+
+handleChange = (e) => {
+this.setState({
+action: e.target.value
+})
+}
+
+render() {
+let { action } = this.state;
+return (
+<div>
+<input type="text" onChange={this.handleChange} value={action} />
+<button onClick={this.addTodo}>add todo</button>
+</div>
+)
+}
+}
+
+export default Input`
+
+#### We will install Axios
+`npm install axios`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
