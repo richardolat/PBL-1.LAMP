@@ -50,10 +50,55 @@
 #### We will install express using npm
 `npm install express`
 
+![image](https://github.com/richardolat/PBL-1.LAMP/assets/134428528/b26a6e15-3e1e-4cf4-89bb-4710c058cb80)
+
+#### Now we will create a file index.js with the command below
+`touch index.js`
+
+#### Install the dotenv module
+`npm install dotenv`
+
+#### We will Open the index.js file with the command below:
+`vim index.js`
+
+#### We will type the code below into it and save.
+`const express = require('express');
+require('dotenv').config();
+
+const app = express();
+
+const port = process.env.PORT || 5000;
+
+app.use((req, res, next) => {
+res.header("Access-Control-Allow-Origin", "\*");
+res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+next();
+});
+
+app.use((req, res, next) => {
+res.send('Welcome to Express');
+});
+
+app.listen(port, () => {
+console.log(`Server running on port ${port}`)
+});`
+
+#### Now it is time to start our server to see if it works. We will open our terminal in the same directory as your index.js file and type:
+`node index.js`
+
+![image](https://github.com/richardolat/PBL-1.LAMP/assets/134428528/28069cf5-85a5-4a81-82a3-50551688070f)
 
 
+#### Now we need to open this port in EC2 Security Group. We will ned to created an inbound rule to open TCP port 5000.
 
 
+![image](https://github.com/richardolat/PBL-1.LAMP/assets/134428528/4720e4e2-7533-4496-9509-68f9737ed2d3)
+
+
+#### We will Open up our browser and try to access our server’s Public IP or Public DNS name followed by port 5000:
+
+
+![image](https://github.com/richardolat/PBL-1.LAMP/assets/134428528/3785ce72-85d1-4f23-ae0d-b01e51a6ad4c)
 
 
 
