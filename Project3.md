@@ -313,7 +313,13 @@ console.log(`Server running on port ${port}`)
 #### Now,we will  ensure we are inside the Todo directory, and simply do:
 `npm run dev`
 
+#### Your app should open and start running on localhost:3000
+
+#### In order to be able to access the application from the Internet you have to open TCP port 3000 on EC2 by adding a new Security Group rule. 
 ![image](https://github.com/richardolat/PBL-1.LAMP/assets/134428528/835e2360-b901-482e-972b-9fdec95dc93f)
+
+
+![image](https://github.com/richardolat/PBL-1.LAMP/assets/134428528/a048c4ea-6925-40aa-90c2-32410ab45e56)
 
 
 #### From our Todo directory run;
@@ -385,6 +391,17 @@ export default Input`
 #### We will install Axios
 `npm install axios`
 
+#### We will go to ‘components’ directory
+`cd src/components`
+
+#### After that open our ListTodo.js
+`vi ListTodo.js`
+
+#### in the ListTodo.js we will copy and paste some codes
+#### After copying and paste a number of codes, we will go to the Todo directory 
+`npm run dev`
+
+![image](https://github.com/richardolat/PBL-1.LAMP/assets/134428528/dc8f5160-25e2-4faf-b1a4-9b221cde68cc)
 
 
 
