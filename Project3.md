@@ -100,6 +100,65 @@ console.log(`Server running on port ${port}`)
 
 ![image](https://github.com/richardolat/PBL-1.LAMP/assets/134428528/3785ce72-85d1-4f23-ae0d-b01e51a6ad4c)
 
+## Routes
+
+
+#### For each of our task, we need to create routes that will define various endpoints that the To-do app will depend on. So let us create a folder routes
+`mkdir routes`
+
+#### We will Change directory to routes folder.
+`cd routes`
+
+#### Now, we will create a file api.js with the command below
+`touch api.js`
+
+#### We will open the file with the command below
+`vim api.js`
+
+#### We will copy below code in the file.
+`const express = require ('express');
+const router = express.Router();
+
+router.get('/todos', (req, res, next) => {
+
+});
+
+router.post('/todos', (req, res, next) => {
+
+});
+
+router.delete('/todos/:id', (req, res, next) => {
+
+})
+
+module.exports = router;`
+
+## MODELS
+
+### since the app is going to make use of Mongodb which is a NoSQL database, we need to create a model
+
+#### We will change directory back Todo folder with cd .. and install Mongoose
+`npm install mongoose`
+
+#### We will create a new folder models :
+`mkdir models`
+
+#### Inside the models folder,we will create a file and name it todo.js
+
+
+
+
+
+![image](https://github.com/richardolat/PBL-1.LAMP/assets/134428528/aa567b1d-9a5f-4e0f-9097-0cc484b9d976)
+
+
+
+
+
+
+
+
+
 
 
 
