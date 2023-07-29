@@ -239,6 +239,42 @@
 
  ### We will use` rsync` utility to backup all the files in the log directory /db /home/recovery/logs.
 
+`sudo rsync -av /db /home/recovery/logs/`
+
+![image](https://github.com/richardolat/PBL-1.LAMP/assets/134428528/4a605cd7-7b27-42d2-adcc-d10bace58336)
+
+
+#### Mount /var/log on logs-lv logical volume.
+
+`sudo mount /dev/webdata-vg/logs-lv /db`
+
+#### We will restore log files back into /db directory
+
+`sudo rsync -av /home/recovery/logs /db`
+
+#### We will verify our setup by running `df -h`
+
+![image](https://github.com/richardolat/PBL-1.LAMP/assets/134428528/ba2a0f81-42bf-427a-8fdc-085e803893c5)
+
+
+# Step 3 — Installing WordPress on our Web Server EC2
+
+#### We will update the repository
+`sudo yum -y update`
+
+#### We will install wget, Apache and it’s dependencies
+`sudo yum -y install wget httpd php php-mysqlnd php-fpm php-json`
+
+#### We will Start Apache
+`sudo systemctl enable httpd`
+
+`sudo systemctl start httpd`
+
+
+#### We will install PHP and it’s depemdencies 
+`sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm`
+![image](https://github.com/richardolat/PBL-1.LAMP/assets/134428528/49ac0afe-8230-4eca-94da-9815480ef07b)
+
 
 
 
