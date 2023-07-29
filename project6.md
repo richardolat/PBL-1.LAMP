@@ -139,6 +139,31 @@
 
 `sudo mkdir -p /var/www/html`
 
+#### We will create /home/recovery/logs to store backup of log data.
+
+`sudo mkdir -p /home/recovery/logs`
+
+#### We will mount` /var/www/html` on `apps-lv logical volume`
+
+`sudo mount /dev/webdata-vg/apps-lv /var/www/html/`
+
+#### We will use rsync utility to backup all the files in the log directory /var/log into /home/recovery/logs
+
+`sudo rsync -av /var/log/. /home/recovery/logs/`
+
+![image](https://github.com/richardolat/PBL-1.LAMP/assets/134428528/925a9758-aa2a-46f3-8371-410c126580de)
+
+
+#### We will mount /var/log on logs-lv logical volume.
+
+`sudo mount /dev/webdata-vg/logs-lv /var/log`
+
+#### We will restore log files back into /var/log directory.
+
+`sudo rsync -av /home/recovery/logs/log/. /var/log`
+
+
+
 
 
 
