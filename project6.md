@@ -196,6 +196,52 @@
 
 #### We will launch a second RedHat EC2 instance that will have a role – `‘DB Server’`. And we will  repeat the same steps as for the Web Server, but instead of `apps-lv` create `db-lv `and mount it to` /db` directory instead of` /var/www/html/`.
 
+#### We will use lvcreate utility to create 2 logical volumes.db-lv Use half of the PV size), and logs-lv.
+
+`sudo lvcreate -n db-lv -L 14G webdata-vg`
+
+`sudo lvcreate -n logs-lv -L 14G webdata-vg`
+
+![image](https://github.com/richardolat/PBL-1.LAMP/assets/134428528/891c9436-2fb3-4a5a-ad86-4e64be0425dc)
+
+
+
+#### We will verify the entire setup
+
+`sudo lsblk`
+
+![image](https://github.com/richardolat/PBL-1.LAMP/assets/134428528/625f7975-cc05-4f90-928c-21380dada3b7)
+
+
+#### We will use mkfs.ext4 to format the logical volumes with ext4 filesystem.
+
+`sudo mkfs -t ext4 /dev/webdata-vg/db-lv`
+
+![image](https://github.com/richardolat/PBL-1.LAMP/assets/134428528/0c1410a1-760b-4dc6-80ac-6aa4b0975089)
+
+
+`sudo mkfs -t ext4 /dev/webdata-vg/logs-lv`
+
+![image](https://github.com/richardolat/PBL-1.LAMP/assets/134428528/9e234f64-1dc8-40a1-886f-537e46d167fe)
+
+
+#### We will create directory to `/db` store website files.
+
+ `sudo mkdir -p /db`
+
+ #### We will create `/home/recovery/logs` to store backup of log data
+
+ `sudo mkdir -p /home/recovery/logs`
+
+ #### We will mount` /db` on `db-lv` logical volume.
+
+ `sudo mount /dev/webdata-vg/db-lv /db`
+
+ ### We will use` rsync` utility to backup all the files in the log directory /db /home/recovery/logs.
+
+
+
+
 
 
 
