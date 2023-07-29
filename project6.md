@@ -100,6 +100,70 @@
 ![image](https://github.com/richardolat/PBL-1.LAMP/assets/134428528/c6b2e8fc-6bcc-4910-8e06-38d782e5cbba)
 
 
+#### We will verify that our Logical Volume has been created successfully by running `sudo lvs`
+
+![image](https://github.com/richardolat/PBL-1.LAMP/assets/134428528/3020e26e-04b7-459e-90dc-f41b23b61bc4)
+
+
+#### We will verify the entire setup by running this command:
+
+`sudo vgdisplay -v #view complete setup - VG, PV, and LV`
+
+![image](https://github.com/richardolat/PBL-1.LAMP/assets/134428528/4f9c22c5-be95-4aa2-a944-b8075db8e239)
+
+
+![image](https://github.com/richardolat/PBL-1.LAMP/assets/134428528/55297fdf-bfbc-4f8d-b305-3a5c3ccf9db0)
+
+
+![image](https://github.com/richardolat/PBL-1.LAMP/assets/134428528/90bdeb51-50b8-42d6-b578-fe3ced74925d)
+
+
+#### We will run command `sudo lsblk`
+
+![image](https://github.com/richardolat/PBL-1.LAMP/assets/134428528/741eb5a0-f87b-41b7-8f30-7e54258559a2)
+
+
+#### We will use `mkfs.ext4` to format the logical volumes with ext4 filesystem.
+
+`sudo mkfs -t ext4 /dev/webdata-vg/apps-lv`
+
+![image](https://github.com/richardolat/PBL-1.LAMP/assets/134428528/4bfd6f05-9873-4f61-b803-4965073bc36e)
+
+
+`sudo mkfs -t ext4 /dev/webdata-vg/logs-lv`
+
+![image](https://github.com/richardolat/PBL-1.LAMP/assets/134428528/06ab6583-83ab-4425-b10f-2db1dd38fa8f)
+
+
+#### We will create `/var/www/html directory` to store website files.
+
+`sudo mkdir -p /var/www/html`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
